@@ -8,9 +8,9 @@ const port = 3000;
 
 app.set("view engine", "ejs");
 
-const CLIENT_ID = "YOUR_ID";
-const CLIENT_SECRET = "YOUR_SECRET";
-const REDIRECT_URI = "YOUR_REDIRECT_URI";
+const CLIENT_ID = "YOUR_ID";                 // mention your credentials here
+const CLIENT_SECRET = "YOUR_SECRET";         //  ''
+const REDIRECT_URI = "YOUR_REDIRECT_URI";    //  ''
 
 const oAuth2Client = new OAuth2Client({
   clientId: CLIENT_ID,
@@ -37,7 +37,7 @@ app.get("/authorize", (req, res) => {
   res.render("index", { authorizationUrl: authUrl });
 });
 
-app.get("YOUR_REDIRECT_ROUTE", async (req, res) => {
+app.get("YOUR_REDIRECT_ROUTE", async (req, res) => {     // replace redirect route with your redirect route
   const { code } = req.query;
   try {
     const { tokens } = await oAuth2Client.getToken(code);
