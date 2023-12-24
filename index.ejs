@@ -1,0 +1,42 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gmail API Example</title>
+</head>
+<body>
+  <h1>Gmail API Example</h1>
+
+  <% if (authorizationUrl===null) { %>
+    <p>Welcome to the Gmail API Example!</p>
+    <p>
+      To get started, click the following link to authorize the application:
+      <br>
+      <a href="<%= initialAuthorizationUrl %>">Authorize the Application</a>
+    </p>
+  <% } else { %>
+    <p>
+      <a href="<%= authorizationUrl %>">Click here to authorize the application</a>
+    </p>
+
+    <% if (emails && emails.length > 0) { %>
+      <h2>Emails:</h2>
+      <ul>
+        <% emails.forEach((email, index) => { %>
+          <li>
+            <strong>Received:</strong> <%= email.timestamp %><br>
+            <strong>Sender:</strong> <%= email.sender %><br>
+            <strong>Subject:</strong> <%= email.subject %><br>
+            <strong>Body:</strong> <%= email.body %>
+            <strong>Received:</strong> <%= email.timestamp %>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No emails available.</p>
+    <% } %>
+  <% } %>
+</body>
+</html>
